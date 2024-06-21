@@ -258,4 +258,140 @@
 	const totalExperience = calculateTotalExperience(experiencePeriods);
 	totalExperienceElement.textContent = `${totalExperience}`;
 
+	am4core.ready(function () {
+		var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
+		chart.fontFamily = "system-ui";
+
+		var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+		series.data = [
+			{ "tag": "Hiring", "count": 2 },
+			{ "tag": "KPI", "count": 4 },
+			{ "tag": "Python", "count": 1 },
+			{ "tag": "Roadmapping", "count": 4 },
+			{ "tag": "Product Vision", "count": 4 },
+			{ "tag": "MAU", "count": 4 },
+			{ "tag": "Waterfall", "count": 4 },
+			{ "tag": "CR", "count": 3 },
+			{ "tag": "Documentation", "count": 3 },
+			{ "tag": "VSCode", "count": 1 },
+			{ "tag": "Strategic Thinking", "count": 3 },
+			{ "tag": "Prioritization", "count": 3 },
+			{ "tag": "Market Analysis", "count": 3 },
+			{ "tag": "Risk Assesment", "count": 3 },
+			{ "tag": "Leadership", "count": 2 },
+			{ "tag": "Estimation", "count": 2 },
+			{ "tag": "PyCharm", "count": 1 },
+			{ "tag": "User-Centric Approach", "count": 2 },
+			{ "tag": "Agile", "count": 2 },
+			{ "tag": "Problem-Solving", "count": 2 },
+			{ "tag": "Metrics-driven Approach", "count": 1 },
+			{ "tag": "Communication", "count": 1 },
+			{ "tag": "JS", "count": 1 },
+			{ "tag": "Cross-Functionality", "count": 1 },
+			{ "tag": "Scrum", "count": 1 }
+		];
+
+		series.dataFields.word = "tag";
+		series.dataFields.value = "count";
+
+		series.labels.template.propertyFields.fontWeight = "fontWeight";
+		series.labels.template.propertyFields.fill = "color";
+
+		series.labels.template.events.on("inited", function (event) {
+			var label = event.target;
+			var dataItem = label.dataItem;
+			var value = dataItem.value;
+
+			if (value > 1) {
+				label.fontWeight = "bold";
+			} else {
+				label.fontWeight = "normal";
+			}
+			label.fill = am4core.color("#FFFFFF");
+		});
+
+		var hoverState = series.labels.template.states.create("hover");
+		hoverState.properties.fill = am4core.color("#FF0000");
+
+		series.minFontSize = 10;
+		series.maxFontSize = 50;
+
+		chart.logo.disabled = true;
+		chart.disabled = false;
+	});
+
+	document.addEventListener('DOMContentLoaded', function () {
+		particlesJS('particles-js', {
+			"particles": {
+				"number": {
+					"value": 110,
+					"density": {
+						"enable": true,
+						"value_area": 800
+					}
+				},
+				"color": {
+					"value": "#ffffff"
+				},
+				"shape": {
+					"type": "circle",
+					"stroke": {
+						"width": 0,
+						"color": "#000000"
+					},
+					"polygon": {
+						"nb_sides": 4
+					},
+					"image": {
+						"src": "img/github.svg",
+						"width": 100,
+						"height": 100
+					}
+				},
+				"opacity": {
+					"value": 0.6,
+					"random": true,
+					"anim": {
+						"enable": false,
+						"speed": 1,
+						"opacity_min": 0.1,
+						"sync": false
+					}
+				},
+				"size": {
+					"value": 3,
+					"random": true,
+					"anim": {
+						"enable": true,
+						"speed": 3,
+						"size_min": 0.1,
+						"sync": false
+					}
+				},
+				"line_linked": {
+					"enable": true,
+					"distance": 150,
+					"color": "#ffffff",
+					"opacity": 0.4,
+					"width": 1
+				},
+				"move": {
+					"enable": true,
+					"speed": 0.8,
+					"direction": "none",
+					"random": true,
+					"straight": false,
+					"out_mode": "out",
+					"bounce": false,
+					"attract": {
+						"enable": false,
+						"rotateX": 600,
+						"rotateY": 1200
+					}
+				}
+			},
+			"retina_detect": true
+		});
+	});
+
 })(jQuery);

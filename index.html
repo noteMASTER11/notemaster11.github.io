@@ -12,13 +12,13 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" />
 	</noscript>
 </head>
 
 <body class="is-preload">
-
 	<!-- Sidebar -->
 	<section id="sidebar">
 		<div class="inner">
@@ -38,7 +38,6 @@
 		<!-- Intro -->
 		<section id="intro" class="wrapper style1 fullscreen fade-up">
 			<div id="particles-js"></div>
-
 			<div class="inner">
 				<img src="images/photo.jpg" alt="Daniil Derbenyov" class="profile-photo" />
 				<h1>Daniil Derbenyov</h1>
@@ -52,12 +51,13 @@
 				<ul class="actions">
 					<li><a href="#one" class="button scrolly">My Achievments</a></li>
 				</ul>
-				
+
 				<!-- Work Experience -->
 				<div class="work-experience">
 					<div class="blur-overlay"></div>
 					<h1 style="display: inline;">Skills Cloud</h1>
-					<div id="chartdiv"></div>
+					<div id="chartdiv" class="chart-container"></div>
+					<script src="assets/js/main.js"></script>
 					<h1 style="display: inline;">Work Experience </h1>
 					<p id="total-experience" style="display: inline;"></p>
 					<p></p>
@@ -314,141 +314,12 @@
 	<script src="assets/js/browser.min.js"></script>
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
 	<script src="assets/js/particles.min.js"></script>
 	<script src="assets/js/core.js"></script>
 	<script src="assets/js/charts.js"></script>
 	<script src="assets/js/wordCloud.js"></script>
 	<script src="assets/js/animated.js"></script>
-
-	<script>
-		particlesJS('particles-js', {
-			"particles": {
-				"number": {
-					"value": 110,
-					"density": {
-						"enable": true,
-						"value_area": 800
-					}
-				},
-				"color": {
-					"value": "#ffffff"
-				},
-				"shape": {
-					"type": "circle",
-					"stroke": {
-						"width": 0,
-						"color": "#000000"
-					},
-					"polygon": {
-						"nb_sides": 4
-					},
-					"image": {
-						"src": "img/github.svg",
-						"width": 100,
-						"height": 100
-					}
-				},
-				"opacity": {
-					"value": 0.6,
-					"random": true,
-					"anim": {
-						"enable": false,
-						"speed": 1,
-						"opacity_min": 0.1,
-						"sync": false
-					}
-				},
-				"size": {
-					"value": 3,
-					"random": true,
-					"anim": {
-						"enable": true,
-						"speed": 3,
-						"size_min": 0.1,
-						"sync": false
-					}
-				},
-				"line_linked": {
-					"enable": true,
-					"distance": 150,
-					"color": "#ffffff",
-					"opacity": 0.4,
-					"width": 1
-				},
-				"move": {
-					"enable": true,
-					"speed": 0.8,
-					"direction": "none",
-					"random": true,
-					"straight": false,
-					"out_mode": "out",
-					"bounce": false,
-					"attract": {
-						"enable": false,
-						"rotateX": 600,
-						"rotateY": 1200
-					}
-				}
-			},
-
-			"retina_detect": true
-		});
-	</script>
-
-	<!-- Chart code -->
-	<script>
-		am4core.ready(function () {
-			var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
-			chart.fontFamily = "system-ui";
-
-			var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-			series.data = [
-				{ "tag": "Product Management", "count": 1 },
-				{ "tag": "CR", "count": 3 },
-				{ "tag": "MVP", "count": 2 },
-				{ "tag": "DAU", "count": 1 },
-				{ "tag": "MAU", "count": 4 },
-				{ "tag": "ARPU", "count": 2 }
-			];
-			series.dataFields.word = "tag";
-			series.dataFields.value = "count";
-
-			// Установка стилей для текста в зависимости от значения count
-			series.labels.template.propertyFields.fontWeight = "fontWeight";
-			series.labels.template.propertyFields.fill = "color"; // просто для примера, можно настроить и цвет текста
-
-			series.labels.template.events.on("inited", function (event) {
-				var label = event.target;
-				var dataItem = label.dataItem;
-				var value = dataItem.value;
-
-				// Устанавливаем fontWeight в зависимости от value
-				if (value > 1) {
-					label.fontWeight = "bold";
-				} else {
-					label.fontWeight = "normal";
-				}
-				label.fill = am4core.color("#FFFFFF"); // устанавливаем белый цвет текста
-			});
-
-			var hoverState = series.labels.template.states.create("hover");
-			hoverState.properties.fill = am4core.color("#FF0000");
-
-			// Опционально: отключение параметров, влияющих на производительность
-			series.rotationThreshold = 0;
-
-			// Опционально: отключение анимаций
-			chart.logo.disabled = true;
-			chart.disabled = false;
-		});
-	</script>
-	<style>
-		#chartdiv {
-			width: auto;
-			height: 300px;
-		}
-	</style>
+	<script src="assets/js/main.js"></script>
 
 </body>
 
