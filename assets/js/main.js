@@ -395,23 +395,18 @@
 	});
 
 	document.addEventListener('DOMContentLoaded', function () {
-		// Добавляем обработчик нажатия на кнопку
 		document.getElementById('downloadBtn').addEventListener('click', function () {
-			// Используем html2canvas для создания скриншота страницы
 			html2canvas(document.body).then(function (canvas) {
-				// Получаем данные изображения в формате PNG
+				var img=new Image(); img.crossOrigin="anonymous"
 				var imgData = canvas.toDataURL('image/png');
-
-				// Создаем новый документ PDF
-				var doc = new jsPDF('p', 'mm', 'a4');
-				var width = doc.internal.pageSize.getWidth();
-				var height = doc.internal.pageSize.getHeight();
-
-				// Добавляем скриншот на страницу PDF
-				doc.addImage(imgData, 'PNG', 0, 0, width, height);
-
-				// Сохраняем PDF
-				doc.save('website_snapshot.pdf');
+				var downloadLink = document.createElement('a');
+				downloadLink.href = imgData;
+				downloadLink.download = 'website_snapshot.png';
+				document.body.appendChild(downloadLink);
+				downloadLink.click();
+				document.body.removeChild(downloadLink);
+			}).catch(function (error) {
+				console.error('Error:', error);
 			});
 		});
 	});
