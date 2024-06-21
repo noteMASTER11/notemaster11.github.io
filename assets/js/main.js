@@ -394,4 +394,26 @@
 		});
 	});
 
+	document.addEventListener('DOMContentLoaded', function () {
+		// Добавляем обработчик нажатия на кнопку
+		document.getElementById('downloadBtn').addEventListener('click', function () {
+			// Используем html2canvas для создания скриншота страницы
+			html2canvas(document.body).then(function (canvas) {
+				// Получаем данные изображения в формате PNG
+				var imgData = canvas.toDataURL('image/png');
+
+				// Создаем новый документ PDF
+				var doc = new jsPDF('p', 'mm', 'a4');
+				var width = doc.internal.pageSize.getWidth();
+				var height = doc.internal.pageSize.getHeight();
+
+				// Добавляем скриншот на страницу PDF
+				doc.addImage(imgData, 'PNG', 0, 0, width, height);
+
+				// Сохраняем PDF
+				doc.save('website_snapshot.pdf');
+			});
+		});
+	});
+
 })(jQuery);
