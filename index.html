@@ -26,7 +26,7 @@
 				<ul>
 					<li><a href="#intro">Work Experience</a></li>
 					<li><a href="#one">My Achievments</a></li>
-					<li><a href="#two">Education</a></li>
+					<li><a href="#two">Profiling</a></li>
 					<li><a href="#three">Hire me</a></li>
 				</ul>
 			</nav>
@@ -148,6 +148,7 @@
 					whether I am a suitable candidate for your company.</p>
 				<div class="features">
 					<section>
+					<span class="icon solid major fa-cog"></span>
 						<header class="main">
 							<h3>MBTI - ENTJ-A Commander</h3>
 						</header>
@@ -208,39 +209,45 @@
 						</div>
 					</section>
 					<section>
-						<span class="icon solid major fa-lock"></span>
-						<h3>Aliquam sed nullam</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-cog"></span>
-						<h3>Sed erat ullam corper</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-desktop"></span>
-						<h3>Veroeros quis lorem</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon solid major fa-link"></span>
-						<h3>Urna quis bibendum</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
-					</section>
-					<section>
-						<span class="icon major fa-gem"></span>
-						<h3>Aliquam urna dapibus</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
+					<span class="icon solid major fa-cog"></span>
+						<header class="main">
+							<h3>Modified Eysenck questionnaire, EPI</h3>
+						</header>
+
+						<div class="trait">
+							<div class="label">Extraversion/Introversion - 50%</div>
+							<div class="sub-label">
+								<span>Extravert</span>
+								<span>Introvert</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar common" style="width: 50%;"></div>
+							</div>
+						</div>
+
+						<div class="trait">
+							<div class="label">Neuroticism - 21%</div>
+							<div class="sub-label">
+								<span>Low</span>
+								<span>High</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar common" style="width: 21%;"></div>
+							</div>
+						</div>
+
+						<div class="trait">
+							<div class="label">Results Reliability control - 22%</div>
+							<div class="sub-label">
+								<span>Reliable</span>
+								<span>Unreliable</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar common" style="width: 22%;"></div>
+							</div>
+						</div>
 					</section>
 				</div>
-				<ul class="actions">
-					<li><a href="generic.html" class="button">Learn more</a></li>
-				</ul>
 			</div>
 		</section>
 
@@ -391,7 +398,7 @@
 	<script>
 		am4core.ready(function () {
 			var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
-			chart.fontFamily = "Arial";
+			chart.fontFamily = "system-ui";
 			var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
 			series.randomness = 0.1;
 			series.rotationThreshold = 0.5;
