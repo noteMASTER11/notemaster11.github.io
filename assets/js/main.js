@@ -258,7 +258,4 @@
 	const totalExperience = calculateTotalExperience(experiencePeriods);
 	totalExperienceElement.textContent = `${totalExperience}`;
 
-
-
-
 })(jQuery);
