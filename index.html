@@ -52,10 +52,12 @@
 				<ul class="actions">
 					<li><a href="#one" class="button scrolly">My Achievments</a></li>
 				</ul>
-				<div id="chartdiv"></div>
+				
 				<!-- Work Experience -->
 				<div class="work-experience">
 					<div class="blur-overlay"></div>
+					<h1 style="display: inline;">Skills Cloud</h1>
+					<div id="chartdiv"></div>
 					<h1 style="display: inline;">Work Experience </h1>
 					<p id="total-experience" style="display: inline;"></p>
 					<p></p>
@@ -148,7 +150,7 @@
 					whether I am a suitable candidate for your company.</p>
 				<div class="features">
 					<section>
-					<span class="icon solid major fa-cog"></span>
+						<span class="icon solid major fa-cog"></span>
 						<header class="main">
 							<h3>MBTI - ENTJ-A Commander</h3>
 						</header>
@@ -209,7 +211,7 @@
 						</div>
 					</section>
 					<section>
-					<span class="icon solid major fa-cog"></span>
+						<span class="icon solid major fa-cog"></span>
 						<header class="main">
 							<h3>Modified Eysenck questionnaire, EPI</h3>
 						</header>
@@ -399,44 +401,46 @@
 		am4core.ready(function () {
 			var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
 			chart.fontFamily = "system-ui";
+
 			var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
-			series.randomness = 0.1;
-			series.rotationThreshold = 0.5;
-
-			series.data = [{
-				"tag": "Product Management",
-				"count": "1"
-			}, {
-				"tag": "CR",
-				"count": "1"
-			}, {
-				"tag": "MVP",
-				"count": "1"
-			}, {
-				"tag": "DAU",
-				"count": "1"
-			}, {
-				"tag": "MAU",
-				"count": "1"
-			}, {
-				"tag": "ARPU",
-				"count": "1"
-			}];
-
+			series.data = [
+				{ "tag": "Product Management", "count": 1 },
+				{ "tag": "CR", "count": 3 },
+				{ "tag": "MVP", "count": 2 },
+				{ "tag": "DAU", "count": 1 },
+				{ "tag": "MAU", "count": 4 },
+				{ "tag": "ARPU", "count": 2 }
+			];
 			series.dataFields.word = "tag";
 			series.dataFields.value = "count";
 
-			series.heatRules.push({
-				"target": series.labels.template,
-				"property": "fill",
-				"min": am4core.color("#FFFFFF"),
-				"max": am4core.color("#FFFFFF"),
-				"dataField": "value"
+			// Установка стилей для текста в зависимости от значения count
+			series.labels.template.propertyFields.fontWeight = "fontWeight";
+			series.labels.template.propertyFields.fill = "color"; // просто для примера, можно настроить и цвет текста
+
+			series.labels.template.events.on("inited", function (event) {
+				var label = event.target;
+				var dataItem = label.dataItem;
+				var value = dataItem.value;
+
+				// Устанавливаем fontWeight в зависимости от value
+				if (value > 1) {
+					label.fontWeight = "bold";
+				} else {
+					label.fontWeight = "normal";
+				}
+				label.fill = am4core.color("#FFFFFF"); // устанавливаем белый цвет текста
 			});
 
 			var hoverState = series.labels.template.states.create("hover");
 			hoverState.properties.fill = am4core.color("#FF0000");
 
+			// Опционально: отключение параметров, влияющих на производительность
+			series.rotationThreshold = 0;
+
+			// Опционально: отключение анимаций
+			chart.logo.disabled = true;
+			chart.disabled = false;
 		});
 	</script>
 	<style>
