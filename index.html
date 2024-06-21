@@ -52,6 +52,7 @@
 				<ul class="actions">
 					<li><a href="#one" class="button scrolly">My Achievments</a></li>
 				</ul>
+				<div id="chartdiv"></div>
 				<!-- Work Experience -->
 				<div class="work-experience">
 					<div class="blur-overlay"></div>
@@ -109,18 +110,14 @@
 				<!-- End Work Experience -->
 			</div>
 		</section>
-
-
-
 		<!-- One -->
 		<section id="one" class="wrapper style2 spotlights">
 			<section>
 				<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
 				<div class="content">
 					<div class="inner">
-						<h2>Sed ipsum dolor</h2>
-						<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies
-							erat malesuada quis. Aliquam dapibus.</p>
+						<h2>Hall of Fame</h2>
+						<p>Feel free to look at my personal Achievments List. &#128512;</p>
 						<ul class="actions">
 							<li><a href="page1.html" class="button">Take a look</a></li>
 						</ul>
@@ -145,16 +142,70 @@
 		<!-- Two -->
 		<section id="two" class="wrapper style3 fade-up">
 			<div class="inner">
-				<h2>What we do</h2>
-				<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat
-					malesuada quis. Aliquam dapibus, lacus eget hendrerit bibendum, urna est aliquam sem, sit amet
-					imperdiet est velit quis lorem.</p>
+				<h2>Personal Profiling</h2>
+				<p>This section of my CV reflects the results of the most popular tests used in profiling candidates
+					for the position of Product Manager. I hope this information helps you save time in determining
+					whether I am a suitable candidate for your company.</p>
 				<div class="features">
 					<section>
-						<span class="icon solid major fa-code"></span>
-						<h3>Lorem ipsum amet</h3>
-						<p>Phasellus convallis elit id ullam corper amet et pulvinar. Duis aliquam turpis mauris, sed
-							ultricies erat dapibus.</p>
+						<header class="main">
+							<h3>MBTI - ENTJ-A Commander</h3>
+						</header>
+
+						<div class="trait">
+							<div class="label">Energy: 63% Extravert</div>
+							<div class="sub-label">
+								<span>Extravert</span>
+								<span>Introvert</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar extrovert" style="width: 63%;"></div>
+							</div>
+						</div>
+
+						<div class="trait">
+							<div class="label">Mind: 61% Intuitive</div>
+							<div class="sub-label">
+								<span>Intuitive</span>
+								<span>Observant</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar intuitive" style="width: 61%;"></div>
+							</div>
+						</div>
+
+						<div class="trait">
+							<div class="label">Nature: 74% Thinking</div>
+							<div class="sub-label">
+								<span>Thinking</span>
+								<span>Feeling</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar thinking" style="width: 74%;"></div>
+							</div>
+						</div>
+
+						<div class="trait">
+							<div class="label">Tactics: 83% Judging</div>
+							<div class="sub-label">
+								<span>Judging</span>
+								<span>Perceiving</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar judging" style="width: 83%;"></div>
+							</div>
+						</div>
+
+						<div class="trait">
+							<div class="label">Identity: 65% Assertive</div>
+							<div class="sub-label">
+								<span>Assertive</span>
+								<span>Turbulent</span>
+							</div>
+							<div class="bar-container">
+								<div class="bar assertive" style="width: 65%;"></div>
+							</div>
+						</div>
 					</section>
 					<section>
 						<span class="icon solid major fa-lock"></span>
@@ -196,7 +247,13 @@
 		<!-- Three -->
 		<section id="three" class="wrapper style1 fade-up">
 			<div class="inner">
-				<h2>Get in touch</h2>
+				<h2>Hire Me</h2>
+				<p><i>I would be delighted if the HR reviewing my resume would reach out to me using the contact details
+						provided below. Your interest in my professional background and skills is greatly appreciated,
+						and I
+						look forward to the opportunity to discuss how I can contribute to your team. Thank you for
+						considering my application, and I am eager to connect and explore potential collaboration.</i>
+				</p>
 				<div class="split style1">
 					<section>
 						<ul class="contact">
@@ -230,8 +287,13 @@
 	<footer id="footer" class="wrapper style1-alt">
 		<div class="inner">
 			<ul class="menu">
-				<li>&copy; Daniil Derbenyov CV. All rights reserved.</li>
-				<li>This CV was based on Hyperspace Template by HTML5 UP @ajlkn</li>
+				<li>&copy; Daniil Derbenyov CV. All rights belong to their authors.</li>
+				<li>Solutions used:</li>
+				<a href="https://www.amcharts.com/demos-v4/tag-cloud-v4/">tag-cloud-v4</a>
+				<a href="https://fontawesome.com/download">fontawesome-free-6.5.2-web</a>
+				<a href="https://html5up.net/hyperspace">Hyperspace Template</a>
+				<a href="https://github.com/VincentGarreau/particles.js/">particles.js</a>
+				<li>Last CV Update: Jun/21/2024</li>
 			</ul>
 		</div>
 	</footer>
@@ -245,6 +307,10 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="assets/js/particles.min.js"></script>
+	<script src="assets/js/core.js"></script>
+	<script src="assets/js/charts.js"></script>
+	<script src="assets/js/wordCloud.js"></script>
+	<script src="assets/js/animated.js"></script>
 
 	<script>
 		particlesJS('particles-js', {
@@ -321,6 +387,57 @@
 		});
 	</script>
 
+	<!-- Chart code -->
+	<script>
+		am4core.ready(function () {
+			var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
+			chart.fontFamily = "Arial";
+			var series = chart.series.push(new am4plugins_wordCloud.WordCloudSeries());
+			series.randomness = 0.1;
+			series.rotationThreshold = 0.5;
+
+			series.data = [{
+				"tag": "Product Management",
+				"count": "1"
+			}, {
+				"tag": "CR",
+				"count": "1"
+			}, {
+				"tag": "MVP",
+				"count": "1"
+			}, {
+				"tag": "DAU",
+				"count": "1"
+			}, {
+				"tag": "MAU",
+				"count": "1"
+			}, {
+				"tag": "ARPU",
+				"count": "1"
+			}];
+
+			series.dataFields.word = "tag";
+			series.dataFields.value = "count";
+
+			series.heatRules.push({
+				"target": series.labels.template,
+				"property": "fill",
+				"min": am4core.color("#FFFFFF"),
+				"max": am4core.color("#FFFFFF"),
+				"dataField": "value"
+			});
+
+			var hoverState = series.labels.template.states.create("hover");
+			hoverState.properties.fill = am4core.color("#FF0000");
+
+		});
+	</script>
+	<style>
+		#chartdiv {
+			width: auto;
+			height: 300px;
+		}
+	</style>
 
 </body>
 
