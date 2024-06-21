@@ -229,7 +229,7 @@ body,
 input,
 select,
 textarea {
-	color: rgba(255, 255, 255, 0.55);
+	color: rgb(255, 255, 255);
 	font-family: system-ui, Arial, Helvetica, sans-serif;
 	font-size: 16.5pt;
 	font-weight: normal;
@@ -1973,19 +1973,24 @@ button,
 	color: #ffffff !important;
 	cursor: pointer;
 	display: inline-block;
-	font-size: 0.6em;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-size: 100%;
 	font-weight: bold;
-	height: calc(4.75em + 2px);
+	height: 32px;
+	/* Выберите желаемую высоту в пикселях */
 	letter-spacing: 0.25em;
-	line-height: 4.75em;
+	line-height: 32px;
+	/* Сделайте line-height равным высоте кнопки для центрирования текста */
 	outline: 0;
-	padding: 0 3.75em;
+	padding: 0 24px;
+	/* Выберите желаемые отступы в пикселях */
 	position: relative;
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
 	white-space: nowrap;
 }
+
 
 input[type="submit"]:after,
 input[type="reset"]:after,
@@ -2672,27 +2677,27 @@ input[type="radio"]+label:before {
 }
 
 .wrapper.style1 .icon.major:before {
-	color: #5e42a6;
+	color: #020033;
 }
 
 .wrapper.style1-alt .icon.major:before {
-	color: #493382;
+	color: #020033;
 }
 
 .wrapper.style2 .icon.major:before {
-	color: #5052b5;
+	color: #020033;
 }
 
 .wrapper.style2-alt .icon.major:before {
-	color: #3e4094;
+	color: #020033;
 }
 
 .wrapper.style3 .icon.major:before {
-	color: #b74e91;
+	color: #020033;
 }
 
 .wrapper.style3-alt .icon.major:before {
-	color: #953d75;
+	color: #020033;
 }
 
 /* Image */
@@ -3137,7 +3142,7 @@ header h6+p {
 	-webkit-flex-direction: row;
 	-ms-flex-direction: row;
 	flex-direction: row;
-	min-height: 22.5em;
+	/* min-height: 22.5em; */
 }
 
 body.is-ie .spotlights>section {
@@ -3381,15 +3386,15 @@ table.alt tfoot {
 }
 
 .wrapper.style1 {
-	background-color: #5e42a6;
+	background-color: #2d0e7f;
 }
 
 .wrapper.style1-alt {
-	background-color: #493382;
+	background-color: #110043;
 }
 
 .wrapper.style2 {
-	background-color: #5052b5;
+	background-color: #2d0e7f;
 }
 
 .wrapper.style2-alt {
@@ -3397,11 +3402,11 @@ table.alt tfoot {
 }
 
 .wrapper.style3 {
-	background-color: #b74e91;
+	background-color: #020033;
 }
 
 .wrapper.style3-alt {
-	background-color: #953d75;
+	background-color: #020033;
 }
 
 .wrapper.fullscreen {
@@ -3654,7 +3659,7 @@ body.is-preload .wrapper.fade>.inner {
 
 #footer>.inner .menu {
 	font-size: 0.8em;
-	color: rgba(255, 255, 255, 0.15);
+	color: rgba(255, 255, 255, 0.578);
 }
 
 #header+#wrapper+#footer>.inner {
@@ -4046,18 +4051,93 @@ canvas {
 }
 
 .blur-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    backdrop-filter: blur(5px);
-    z-index: -1;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0);
+	backdrop-filter: blur(5px);
+	z-index: -1;
 }
 
 .work-experience {
 	position: relative;
 	overflow: hidden;
 	border-radius: 2%;
+}
+
+* {
+	scrollbar-width: none;
+	/* Firefox */
+	-ms-overflow-style: none;
+	/* Internet Explorer 10+ */
+}
+
+*::-webkit-scrollbar {
+	display: none;
+	/* Safari and Chrome */
+}
+
+.traits-container {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 2em;
+}
+
+.trait {
+	margin-bottom: 2em;
+}
+
+.trait .label {
+	font-weight: bold;
+	margin-bottom: 0.5em;
+}
+
+.trait .sub-label {
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.9em;
+	color: #ffffff;
+	margin-bottom: 0.5em;
+}
+
+.trait .bar-container {
+	position: relative;
+	height: 10px;
+	background: #e4e4e4;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.trait .bar {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 5px;
+}
+
+.extrovert {
+	background: #00bfff;
+}
+
+.intuitive {
+	background: #ffbf00;
+}
+
+.thinking {
+	background: #00ff00;
+}
+
+.judging {
+	background: #bf00ff;
+}
+
+.assertive {
+	background: #ff4040;
+}
+
+.common {
+	background: #008b9d;
 }
