@@ -4162,6 +4162,7 @@ canvas {
 .modal {
 	display: none;
 	position: fixed;
+	border: #00bfff 1px;
 	z-index: 1;
 	left: 0;
 	top: 0;
@@ -4169,15 +4170,14 @@ canvas {
 	height: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.8);
-	padding-top: 205px;
+	padding-top: 300px;
 }
 
 .modal-content {
 	background-color: #001031;
 	margin: 5% auto;
 	padding: 20px;
-	width: 80%;
-	max-width: 500px;
+	max-width: 675px;
 	color: white;
 	border-radius: 2px;
 }
@@ -4188,10 +4188,11 @@ canvas {
 }
 
 .close {
-	color: #aaa;
 	float: right;
-	font-size: 28px;
+	font-size: 50px;
 	font-weight: bold;
+	margin: -60px;
+	padding: 0px;
 }
 
 .close:hover,
@@ -4202,11 +4203,12 @@ canvas {
 }
 
 .copyButton {
-	background-color: transparent;
-	border: none;
-	color: white;
-	font-size: 16px;
-	cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 .copyButton:hover {
