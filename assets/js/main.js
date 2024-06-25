@@ -426,7 +426,7 @@
 				var imgData = canvas.toDataURL('image/png');
 				var downloadLink = document.createElement('a');
 				downloadLink.href = imgData;
-				downloadLink.download = 'website_snapshot.png';
+				downloadLink.download = 'CV_Daniil_Derbenyov.png';
 				document.body.appendChild(downloadLink);
 				downloadLink.click();
 				document.body.removeChild(downloadLink);
