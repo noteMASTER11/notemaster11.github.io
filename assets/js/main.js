@@ -199,8 +199,27 @@
 	});
 
 	document.addEventListener('DOMContentLoaded', function () {
+		function parseDate(dateString) {
+			const [month, year] = dateString.split(' ');
+			const months = {
+				'January': 0,
+				'February': 1,
+				'March': 2,
+				'April': 3,
+				'May': 4,
+				'June': 5,
+				'July': 6,
+				'August': 7,
+				'September': 8,
+				'October': 9,
+				'November': 10,
+				'December': 11
+			};
+			return new Date(year, months[month]);
+		}
+
 		function calculateYearsSince(dateString) {
-			const startDate = new Date(dateString);
+			const startDate = parseDate(dateString);
 			const currentDate = new Date();
 			let years = currentDate.getFullYear() - startDate.getFullYear();
 
@@ -212,7 +231,7 @@
 			return years;
 		}
 
-		const yearsSince = calculateYearsSince('2021-05-01'); // ISO формат
+		const yearsSince = calculateYearsSince('May 2021');
 		document.getElementById('yearsSince').textContent = `(${yearsSince} years)`;
 
 		function calculateAge(birthDate) {
@@ -236,7 +255,7 @@
 		const experiencePeriods = [
 			{ start: new Date('2020-01-01'), end: new Date('2021-04-30') },
 			{ start: new Date('2018-05-01'), end: new Date('2019-11-30') },
-			{ yearsSince: 3 }
+			{ start: new Date('2021-05-01'), end: new Date() }
 		];
 
 		function calculateTotalExperience(periods) {
@@ -251,19 +270,13 @@
 
 					totalYears += Math.floor(yearDiff);
 					totalMonths += Math.round(monthDiff % 12);
-				} else if (period.yearsSince) {
-					const years = Math.floor(period.yearsSince);
-					const months = Math.round((period.yearsSince % 1) * 12);
-
-					totalYears += years;
-					totalMonths += months;
 				}
 			});
 
 			const years = Math.floor(totalYears + totalMonths / 12);
 			const months = totalMonths % 12;
 
-			return `${years} years ${months} months`;
+			return `${years} years`;
 		}
 
 		const totalExperience = calculateTotalExperience(experiencePeriods);
