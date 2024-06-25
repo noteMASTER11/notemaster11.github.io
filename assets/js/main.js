@@ -199,6 +199,22 @@
 	});
 
 	document.addEventListener('DOMContentLoaded', function () {
+		function calculateYearsSince(dateString) {
+			const startDate = new Date(dateString);
+			const currentDate = new Date();
+			let years = currentDate.getFullYear() - startDate.getFullYear();
+
+			if (currentDate.getMonth() < startDate.getMonth() ||
+				(currentDate.getMonth() === startDate.getMonth() && currentDate.getDate() < startDate.getDate())) {
+				years--;
+			}
+
+			return years;
+		}
+
+		const yearsSince = calculateYearsSince('2021-05-01'); // ISO формат
+		document.getElementById('yearsSince').textContent = `(${yearsSince} years)`;
+
 		function calculateAge(birthDate) {
 			const birthDateObj = new Date(birthDate);
 			const currentDate = new Date();
@@ -215,48 +231,44 @@
 
 		const birthDate = '1995-02-11';
 
-		const ageElement = document.getElementById('age');
+		document.getElementById('age').textContent = calculateAge(birthDate);
 
-		ageElement.textContent = calculateAge(birthDate);
+		const experiencePeriods = [
+			{ start: new Date('2020-01-01'), end: new Date('2021-04-30') },
+			{ start: new Date('2018-05-01'), end: new Date('2019-11-30') },
+			{ yearsSince: 3 }
+		];
+
+		function calculateTotalExperience(periods) {
+			let totalYears = 0;
+			let totalMonths = 0;
+
+			periods.forEach(period => {
+				if (period.start && period.end) {
+					const diff = period.end.getTime() - period.start.getTime();
+					const yearDiff = diff / (1000 * 60 * 60 * 24 * 365.25);
+					const monthDiff = yearDiff * 12;
+
+					totalYears += Math.floor(yearDiff);
+					totalMonths += Math.round(monthDiff % 12);
+				} else if (period.yearsSince) {
+					const years = Math.floor(period.yearsSince);
+					const months = Math.round((period.yearsSince % 1) * 12);
+
+					totalYears += years;
+					totalMonths += months;
+				}
+			});
+
+			const years = Math.floor(totalYears + totalMonths / 12);
+			const months = totalMonths % 12;
+
+			return `${years} years ${months} months`;
+		}
+
+		const totalExperience = calculateTotalExperience(experiencePeriods);
+		document.getElementById('total-experience').textContent = totalExperience;
 	});
-
-	const experiencePeriods = [
-		{ start: new Date('January 2020'), end: new Date('April 2021') },
-		{ start: new Date('May 2018'), end: new Date('November 2019') },
-		{ yearsSince: 3 }
-	];
-
-	function calculateTotalExperience(periods) {
-		let totalYears = 0;
-		let totalMonths = 0;
-
-		periods.forEach(period => {
-			if (period.start && period.end) {
-				const diff = period.end.getTime() - period.start.getTime();
-				const yearDiff = diff / (1000 * 60 * 60 * 24 * 365.25);
-				const monthDiff = yearDiff * 12;
-
-				totalYears += Math.floor(yearDiff);
-				totalMonths += Math.round(monthDiff % 12);
-			} else if (period.yearsSince) {
-				const years = Math.floor(period.yearsSince);
-				const months = Math.round((period.yearsSince % 1) * 12);
-
-				totalYears += years;
-				totalMonths += months;
-			}
-		});
-
-		const years = Math.floor(totalYears + totalMonths / 12);
-		const months = totalMonths % 12;
-
-		return `${years} years ${months} months`;
-	}
-
-	const totalExperienceElement = document.getElementById('total-experience');
-
-	const totalExperience = calculateTotalExperience(experiencePeriods);
-	totalExperienceElement.textContent = `${totalExperience}`;
 
 	am4core.ready(function () {
 		var chart = am4core.create("chartdiv", am4plugins_wordCloud.WordCloud);
@@ -397,7 +409,7 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		document.getElementById('downloadBtn').addEventListener('click', function () {
 			html2canvas(document.body).then(function (canvas) {
-				var img=new Image(); img.crossOrigin="anonymous"
+				var img = new Image(); img.crossOrigin = "anonymous"
 				var imgData = canvas.toDataURL('image/png');
 				var downloadLink = document.createElement('a');
 				downloadLink.href = imgData;
@@ -410,5 +422,65 @@
 			});
 		});
 	});
+
+	document.addEventListener('DOMContentLoaded', () => {
+		const modal = document.getElementById('modal');
+		const modalText = document.getElementById('modalText');
+		const btn = document.getElementById('contactButton');
+		const span = document.getElementsByClassName('close')[0];
+
+		const contacts = {
+			telegram: 'Telegram: @mkzxt',
+			number: 'Number: +010038454666'
+		};
+
+		btn.onclick = function () {
+			modal.style.display = 'block';
+			// Подгружаем текст в модальное окно
+			modalText.innerHTML = `
+            <p>${contacts.telegram} <button class="copyButton" data-copy="${contacts.telegram}"><i class="fas fa-copy"></i></button></p>
+            <p>${contacts.number} <button class="copyButton" data-copy="${contacts.number}"><i class="fas fa-copy"></i></button></p>
+            <div style="text-align: center; margin-top: 20px;">
+                <button id="copyAllButton"><i class="fas fa-copy"></i> Copy All</button>
+            </div>
+        `;
+
+			// Добавляем обработчики для каждой кнопки копирования
+			document.querySelectorAll('.copyButton').forEach(button => {
+				button.onclick = function () {
+					const textToCopy = button.getAttribute('data-copy');
+					copyToClipboard(textToCopy);
+					button.innerHTML = '<i class="fas fa-check copied"></i>';
+				}
+			});
+
+			// Обработчик для кнопки "Copy All"
+			document.getElementById('copyAllButton').onclick = function () {
+				const allText = `${contacts.telegram}\n${contacts.number}`;
+				copyToClipboard(allText);
+				this.innerHTML = '<i class="fas fa-check copied"></i> Copied';
+			}
+		}
+
+		span.onclick = function () {
+			modal.style.display = 'none';
+		}
+
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = 'none';
+			}
+		}
+
+		function copyToClipboard(text) {
+			const tempInput = document.createElement('input');
+			tempInput.value = text;
+			document.body.appendChild(tempInput);
+			tempInput.select();
+			document.execCommand('copy');
+			document.body.removeChild(tempInput);
+		}
+	});
+
 
 })(jQuery);
